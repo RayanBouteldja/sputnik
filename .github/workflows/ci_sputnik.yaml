@@ -26,11 +26,11 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - name: List Repository Contents
-        run: ls -la
-        
+        run: ls -a
+
       - name: Build with Gradle
         run: |
-          chmod +x gradlew
+          chmod +x ./gradlew
           ./gradlew build
 
   
