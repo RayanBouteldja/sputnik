@@ -25,6 +25,9 @@ jobs:
     needs: checkout-and-setup
     runs-on: ubuntu-latest
     steps:
+      - name: List Repository Contents
+        run: ls -la
+        
       - name: Build with Gradle
         run: |
           chmod +x gradlew
