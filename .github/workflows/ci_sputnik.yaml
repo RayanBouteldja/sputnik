@@ -30,7 +30,7 @@ jobs:
       
       - name: Build project
         run: |
-          ./gradlew build jacocoTestReport
+          ./gradlew build
   
       - name: Run Tests
         run: |
