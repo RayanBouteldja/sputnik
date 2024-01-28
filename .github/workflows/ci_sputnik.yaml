@@ -8,7 +8,7 @@ on:
       - master
 
 jobs:
-  build:
+  checkout-and-setup:
     name: Build and Test
     runs-on: ubuntu-latest
     steps:
@@ -21,9 +21,20 @@ jobs:
           distribution: 'zulu'
           java-version: 8
 
+  build-and-test:
+    name: Build and Test
+    needs: checkout-and-setup
+    runs-on: ubuntu-latest
+    steps:
       - name: Build project
         run: |
-          ./gradlew build
-
+          ./gradlew build jacocoTestReport
   
+      - name: Run Tests
+        run: |
+          ./gradlew test
+  
+      - name: Checkstyle
+        run: |
+          ./gradlew checkstyleMain checkstyleTest
 
