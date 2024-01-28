@@ -23,7 +23,7 @@ jobs:
       
       - name: Build project
         run: |
-          ./gradlew build
+          ./gradlew build jacocoTestReport
   
       - name: Run Tests
         run: |
@@ -31,5 +31,5 @@ jobs:
   
       - name: Checkstyle
         run: |
-          ./gradlew checkstyleMain checkstyleTest
+          ./gradlew checkstyle -PcheckstyleConfig=sun_checks.xml
 
