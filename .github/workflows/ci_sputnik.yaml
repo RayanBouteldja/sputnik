@@ -26,6 +26,8 @@ jobs:
     needs: checkout-and-setup
     runs-on: ubuntu-latest
     steps:
+      - uses: actions/checkout@v4
+      
       - name: Build project
         run: |
           ./gradlew build jacocoTestReport
