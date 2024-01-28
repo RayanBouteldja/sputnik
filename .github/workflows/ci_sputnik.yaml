@@ -1,0 +1,56 @@
+name: Continuous Integration of Sputnik
+on:
+  push:
+    branches:
+      - master
+  pull_request:
+    branches:
+      - master
+
+jobs:
+  checkout-and-setup:
+    name: Checkout and Set up Java
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout repository code
+        uses: actions/checkout@v2
+  
+      - name: Set up Java
+        uses: actions/setup-java@v2
+        with:
+          java-version: 11
+
+  build-and-test:
+    name: Build and Test
+    needs: checkout-and-setup
+    runs-on: ubuntu-latest
+    steps:
+      - name: Build with Maven (clean)
+        run: mvn clean
+  
+      - name: Build with Maven (compile)
+        run: mvn compile
+
+      - name: Run Tests
+        run: mvn test
+
+  package-and-install:
+    name: Package and Install
+    needs: build-and-test
+    runs-on: ubuntu-latest
+    steps:
+      - name: Build with Maven (package)
+        run: mvn package
+  
+      - name: Build with Maven (install)
+        run: mvn install
+
+  checkstyle:
+    name: Checkstyle
+    needs: package-and-install
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkstyle
+        run: mvn checkstyle:check
+  
+
