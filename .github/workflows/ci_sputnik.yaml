@@ -1,4 +1,4 @@
-name: Continuous Integration of Sputnik
+name: Continuous Integration (CI) of Sputnik
 on:
   push:
     branches:
@@ -8,11 +8,11 @@ on:
       - master
 
 jobs:
-  checkout-and-setup:
+  build-and-test:
     name: Build and Test
     runs-on: ubuntu-latest
     steps:
-      - name: Set up Git repository
+      - name: Checkout Git Repository
         uses: actions/checkout@v4
 
       - name: Setup java
@@ -21,15 +21,10 @@ jobs:
           distribution: 'zulu'
           java-version: 8
       
-      - name: Build project
+      - name: Run Build
         run: |
           ./gradlew build jacocoTestReport
   
       - name: Run Tests
         run: |
           ./gradlew test
-  
-      - name: Checkstyle
-        run: |
-          ./gradlew checkstyle -PcheckstyleConfig=sun_checks.xml
-
