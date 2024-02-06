@@ -20,11 +20,12 @@ jobs:
         with:
           distribution: 'zulu'
           java-version: 8
+          cache: gradle
       
       - name: Run Build
         run: |
-          ./gradlew build jacocoTestReport
+          ./gradlew build jacocoTestReport --info
   
       - name: Run Tests
         run: |
-          ./gradlew test
+          ./gradlew test --info
