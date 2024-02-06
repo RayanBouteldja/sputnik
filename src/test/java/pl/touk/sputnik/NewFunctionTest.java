@@ -1,4 +1,4 @@
-package pl.touk.sputnik.function;
+package pl.touk.sputnik;
 
 import org.junit.jupiter.api.Test;
 import pl.touk.sputnik.NewFunction;
