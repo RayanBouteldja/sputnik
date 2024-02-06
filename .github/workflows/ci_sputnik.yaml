@@ -24,8 +24,8 @@ jobs:
       
       - name: Run Build
         run: |
-          ./gradlew build jacocoTestReport --quiet
+          ./gradlew build jacocoTestReport --info
   
       - name: Run Tests
         run: |
-          ./gradlew test --quiet
+          ./gradlew test --info
