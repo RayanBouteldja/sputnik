@@ -164,6 +164,8 @@ dependencies {
 
 test {
     useJUnitPlatform()
+    testLogging.showStandardStreams = true
+    testLogging.exceptionFormat = "full"
 }
 
 tasks.withType(Test) { 
@@ -172,28 +174,6 @@ tasks.withType(Test) {
 //     events "started", "skipped", "passed", "failed"
 //     showStandardStreams true
 //   }
-    customTestLogging {
-        exceptionFormat "full"
-        events "started", "skipped", "passed", "failed"
-        showStandardStreams true
-
-        // Additional configurations
-        showExceptions true
-        showCauses true
-        showStackTraces true
-        showExceptionsStackTraces true
-        showStandardStreams true
-        showLogging true
-        showContextColors true
-        showExceptions true
-        showWarnings true
-        showStackTraces true
-        showCauses true
-        showCoverage true
-        showCoverageSummary true
-        showPassedStandardStreams true
-        showFailedStandardStreams true
-    }
 }
 
 // Jacoco + coveralls
