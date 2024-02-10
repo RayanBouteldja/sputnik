@@ -24,7 +24,7 @@ jobs:
       
       - name: Run Build
         run: |
-          ./gradlew build jacocoTestReport
+          ./gradlew build jacocoTestReport --info
   
       - name: Run Tests
         run: |
