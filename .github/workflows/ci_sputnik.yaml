@@ -18,14 +18,14 @@ jobs:
       - name: Setup java
         uses: actions/setup-java@v3
         with:
-          distribution: 'zulu' # See 'Supported distributions' for available options
-          java-version: '21'
+          distribution: 'zulu'
+          java-version: 8
           cache: gradle
       
-      - name: Run Build
+      - name: Compile project
         run: |
-          ./gradlew build jacocoTestReport --info
+          ./gradlew clean compileJava
   
-      - name: Run Tests
+      - name: Test project
         run: |
-          ./gradlew test
+          ./gradlew clean test --info
