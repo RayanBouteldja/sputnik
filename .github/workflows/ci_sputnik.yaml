@@ -20,7 +20,6 @@ jobs:
         with:
           distribution: 'zulu'
           java-version: 8
-          cache: gradle
       
       - name: Compile project
         run: |
@@ -42,8 +41,9 @@ jobs:
         with:
           distribution: 'zulu'
           java-version: 8
-          cache: gradle
   
-      - name: Test project
-        run: |
-          ./gradlew clean test --info
+      - name: Setup Gradle
+        uses: gradle/gradle-build-action@v2
+        
+      - name: Run build with Gradle Wrapper
+        run: ./gradlew build
