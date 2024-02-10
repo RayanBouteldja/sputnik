@@ -8,8 +8,8 @@ on:
       - master
 
 jobs:
-  build-and-test:
-    name: Build and Test
+  compile:
+    name: Compile Sputnik
     runs-on: ubuntu-latest
     steps:
       - name: Checkout Git Repository
@@ -25,6 +25,24 @@ jobs:
       - name: Compile project
         run: |
           ./gradlew clean compileJava
+  
+      - name: Test project
+        run: |
+          ./gradlew clean test --info
+  test:
+    name: Test Sputnik
+    needs: compile
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout Git Repository
+        uses: actions/checkout@v4
+
+      - name: Setup java
+        uses: actions/setup-java@v3
+        with:
+          distribution: 'zulu'
+          java-version: 8
+          cache: gradle
   
       - name: Test project
         run: |
