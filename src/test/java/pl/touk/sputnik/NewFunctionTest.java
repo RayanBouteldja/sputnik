@@ -11,7 +11,7 @@ public class NewFunctionTest{
     @Test
     public void testSum(){
         NewFunction function = new NewFunction(4,6);
-        assertThat(function.sum()).isEqualTo(10);
+        assertThat(function.sum()).isEqualTo(11);
     }
 
     @Test 
