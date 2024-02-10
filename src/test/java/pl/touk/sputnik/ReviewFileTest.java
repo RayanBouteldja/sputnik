@@ -49,4 +49,24 @@ class ReviewFileTest {
     private ReviewFile createReviewFile(String reviewFileName) {
         return new ReviewFile(reviewFileName);
     }
+
+    //Test pour un chemin absolu
+    @Test
+    void shouldHandleAbsoluteFilePaths() {
+        String absoluteFilePath = "/home/user/gerrit-server/src/main/java/com/google/gerrit/server/project/RefControl.java";
+        ReviewFile reviewFile = createReviewFile(absoluteFilePath);
+
+        assertThat(reviewFile.getJavaClassName()).isEqualTo(MAIN_JAVA_CLASS_NAME);
+        assertThat(reviewFile.getSourceDir()).startsWith("/home/user/gerrit-server/src/main/java/");
+    }
+    //Test pour extension .java
+    @Test
+    void shouldHandleFilesWithoutJavaExtension() {
+        String noExtensionFileName = "gerrit-server/src/main/java/com/google/gerrit/server/project/RefControl";
+        ReviewFile reviewFile = createReviewFile(noExtensionFileName);
+
+         
+        assertThat(reviewFile.getJavaClassName()).isEqualTo("com.google.gerrit.server.project.RefControl");
+        assertThat(reviewFile.getSourceDir()).isEqualTo(MAIN_JAVA_SOURCE_DIR);
+    }   
 }
